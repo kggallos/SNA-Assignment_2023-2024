@@ -12,10 +12,10 @@ This survey investigates the effectiveness of three distinct algorithms in the r
 
 ----
 
-In `archive rotten tomatoes` we store the raw data obtained from [Rotten Tomatoes movies and critic reviews datase](https://www.kaggle.com/datasets/stefanoleone992/rotten-tomatoes-movies-and-critic-reviews-dataset/data?select=rotten_tomatoes_critic_reviews.csv).
-
-In `data` directory we have the preprocessed and clean data. It contains `movies.csv` (movie feature matrix) and `reviews.csv` (edge features and weights).  `reviews_clean.csv` file refers to the heterogeneous graph that does not contain any movie without features.
+In `archive rotten tomatoes` we store the raw data obtained from [Rotten Tomatoes movies and critic reviews datase](https://www.kaggle.com/datasets/stefanoleone992/rotten-tomatoes-movies-and-critic-reviews-dataset/data?select=rotten_tomatoes_critic_reviews.csv). There are 2 files `rotten_tomatoes_critic_reviews.csv` and `rotten_tomatoes_movies.csv`, but the first one is too big to be uploaded in this repository.
 
 `pre-processing` directory contains the code to clean and prepare the raw data in an appropriate format. It also has the Exploratory Data Analysis on the created graph.
 
-The algorithms we implemented are located in folders `algorithm1`, `algorithm2`, `algorithm3`. In case there is a problem running `GNN.ipynb` (`torch-sparse` package is not installed, run this code in google colab or contant us). 
+In `data` directory we have the preprocessed and clean data. It contains `movies.csv` (movie feature matrix) and `reviews.csv` (edge features and weights).  `reviews_clean.csv` file refers to the heterogeneous graph that does not contain any movie without features.
+
+The algorithms we implemented are located in folders `algorithm1`, `algorithm2`, `algorithm3`. In case there is a problem running `GNN.ipynb` (`torch-sparse` package is not installed, run this code in google colab or contact us). 

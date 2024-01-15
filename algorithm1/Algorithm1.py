@@ -275,6 +275,36 @@ def get_recommended_movies(ratings_matrix, target_user, similar_users):
 
     return movies_recommended
 
+def evaluation_metrics (movies, ratings_matrix, target_user):
+    # Get the index of the target_user in the ratings_matrix
+    user_index = ratings_matrix[0].index(target_user)
+    
+    total_items = len(movies)
+
+    relevant_items = 0
+    non_relevant_items_not_recommended = 0
+    relevant_items_recommended = 0
+    for row in ratings_matrix:
+        if row[user_index] == 1:
+            relevant_items = relevant_items +1
+            if row[0] in movies:
+               relevant_items_recommended =relevant_items_recommended +1
+        else:
+            if row[0] not in movies:
+                non_relevant_items_not_recommended = non_relevant_items_not_recommended + 1
+           
+    
+    precision = relevant_items_recommended/ float(total_items)
+    recall  = relevant_items_recommended/ float(relevant_items)
+    f1 = 2 *(precision * recall) / (precision + recall)
+    accurancy = (float(relevant_items_recommended) + non_relevant_items_not_recommended)/17255
+    
+    
+    
+    evaluation_list = [precision,recall,f1,accurancy]
+    
+    return evaluation_list
+
 
 def main():
     # Get the user ID
@@ -286,11 +316,11 @@ def main():
     
     current_directory = os.getcwd()
     # Get the genre matrix
-    file_path = os.path.join(current_directory, 'movies.csv')
+    file_path = os.path.join(current_directory,"..","data", 'movies.csv')
     genre_matrix = read_and_process_movie_csv(file_path)
     
     # Get the ratings matrix
-    file_path = os.path.join(os.getcwd(), 'reviews.csv')
+    file_path = os.path.join(current_directory,"..","data", 'reviews.csv')
     ratings_matrix = create_ratings_matrix(file_path)
     
     #make the ratings matix binary
@@ -323,6 +353,21 @@ def main():
            
     print(f"Final movies for recommendation for {target_user}:")
     print(movies_recommended)
+
+    print("Evaluation")
+    evaluation_list = evaluation_metrics(movies_recommended,ratings_matrix,target_user)
+    print(evaluation_list)
+    for i in evaluation_list:
+        print(i)
+    
+    # Record the end time
+    end_time = time.time()
+    
+    # Calculate the elapsed time
+    elapsed_time = end_time - start_time
+    
+    # Print the result
+    print(f"Elapsed time: {elapsed_time} seconds")
 
 
 if __name__ == "__main__":

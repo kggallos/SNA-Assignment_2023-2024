@@ -1,3 +1,6 @@
+# colab notebook
+# https://colab.research.google.com/drive/1YEeTOCJ9bMD8Pr6IjUpFH-IlOqpKufWR#scrollTo=NzWrkeZJM130
+
 import pandas as pd
 import numpy as np
 import networkx as nx

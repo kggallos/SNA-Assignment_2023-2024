@@ -4,7 +4,7 @@ import networkx as nx
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.preprocessing import StandardScaler
 
-df = pd.read_csv('/content/rotten_tomatoes_movies.csv')
+df = pd.read_csv('../archive rotten tomatoes/rotten_tomatoes_movies.csv')
 df.head()
 df.columns
 df.describe(include='all')
@@ -48,10 +48,10 @@ df[used_features].isna().sum().sum()
 # print(df[used_features].to_numpy().shape)
 # print(df[used_features].to_numpy())
 
-df[ ['rotten_tomatoes_link']+used_features ].to_csv('/content/movies.csv',index=False)
+# df[ ['rotten_tomatoes_link']+used_features ].to_csv('/content/movies.csv',index=False)
 
 # Load CSV data
-df = pd.read_csv('/content/movies.csv', nrows = 2000)
+df = pd.read_csv('../data/movies.csv', nrows = 2000)
 
 # Extract relevant columns for similarity computation
 features = df[
@@ -117,7 +117,7 @@ cliques = remove_duplicates(k_cliques)
 line_number = 4001
 
 # Read the specific line
-new_movie_data = pd.read_csv('/content/movies.csv', skiprows=line_number, nrows=1)
+new_movie_data = pd.read_csv('../data/movies.csv', skiprows=line_number, nrows=1)
 
 # Initialize variables to keep track of similarity counts for each cluster
 cluster_similarity_counts = {tuple(cluster): 0 for cluster in cliques}
@@ -142,7 +142,7 @@ most_similar_cluster = max(cluster_similarity_counts, key=cluster_similarity_cou
 
 print(f"The new moxvie belongs to the most similar cluster: {most_similar_cluster}")
 
-reviews_df = pd.read_csv('/content/reviews.csv')
+reviews_df = pd.read_csv('../data/reviews.csv')
 selected_reviews = reviews_df[['Source', 'Target','top_critic']]
 movie_reviewers_dict = {}
 
